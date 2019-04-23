@@ -1,0 +1,6 @@
+include libevent/ez_setup.py libevent/version.py libevent/*.txt 
+include libevent/__init__.py 
+include README.txt
+include libevent/RELEASE-VERSION
+include libevent/tests/*.py
+include libevent/src/*.h
