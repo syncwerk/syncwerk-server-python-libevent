@@ -1,4 +1,4 @@
-from .libevent import *
+from _libevent import *
 import weakref
 
 class Timer(Event):
