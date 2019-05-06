@@ -18,7 +18,19 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+import shutil
 from setuptools import setup, find_packages
+from distutils.command.build import build as _build
+
+shutil.copy('patches/buildfix__init__.py', 'libevent/__init__.py')
+
+class _PatchesBuildCommand(_build):
+    def __init__(self, *args, **kwargs):
+        _build.__init__(self, *args, **kwargs)
+    
+    def run(self):
+        shutil.copy('patches/__init__.py', 'libevent/__init__.py')
+        return _build.run(self)
 
 import sys, os
 
@@ -96,4 +108,5 @@ setup(
     ext_modules = extens,
     test_suite = 'tests.suite',
     include_package_data=True,
+    cmdclass={"build": _PatchesBuildCommand}
 )
