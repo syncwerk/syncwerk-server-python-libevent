@@ -22,7 +22,7 @@ import shutil
 from setuptools import setup, find_packages
 from distutils.command.build import build as _build
 
-shutil.copy('patches/original__init__.py', 'libevent/__init__.py')
+shutil.copy('patches/buildfix__init__.py', 'libevent/__init__.py')
 
 class _PatchesBuildCommand(_build):
     def __init__(self, *args, **kwargs):
